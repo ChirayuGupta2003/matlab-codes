@@ -1,0 +1,503 @@
+1.
+clc;
+close all;
+fprintf("Hello World!\n");
+a=7;
+fprintf("The Value of a is %d\n",a);
+
+b=input("Enter a number or array = ");
+
+disp(b);
+
+
+
+2.
+a= input("Enter the value of a = ");
+if(mod(a,2)==0)
+  fprintf("The no. is even\n");
+else
+  fprintf("The no. is odd\n");
+end
+
+
+3.
+a= input("Enter the value of a = ");
+if(mod(a,2)==0)
+  fprintf("The no. is even\n");
+  if(a<10)
+      fprintf("NB\n");
+  else
+      fprintf("BN\n")
+  end
+else
+  fprintf("The no. is odd\n");
+  if(a<10)
+      fprintf("NB\n");
+  else
+      fprintf("BN\n");
+  end
+end
+
+
+4.
+a=input("Enter a no. = ");
+if(a>50 && a<100)
+    fprintf("NB\n");
+elseif(a>100)
+    fprintf("BN\n");
+else
+    fprintf("NBBN\n");
+end
+
+
+5.
+a=input("Enter a no. = ");
+
+if(abs(a)>5)
+    fprintf("NB\n");
+    fprintf("The value is %f\n",a);
+else
+    fprintf("NBBN\n");
+     fprintf("The value is %f\n",a);
+end
+
+
+6.
+a=9;
+while(a<50)
+    a=a+2;
+    fprintf('NB %d\n',a);
+end
+
+7.
+for a=50:10:100
+    fprintf("NB %d\n",a);
+end
+
+
+
+8.
+clc;
+close all;
+
+a=input("Enter the first no. = ");
+b=input("Enter the second no. = ");
+c=(a+b)/2;
+fprintf("The c is %f\n",c);
+
+f = @(x)(x^3 + 4*x^2 - 10);
+
+fprintf("The f(a) is %f\n",f(a));
+fprintf("The f(b) is %f\n",f(b));
+fprintf("The f(c) is %f\n",f(c));
+
+if(f(a)*f(b)<0)
+    while(abs(a-b)>10^-4)
+        c=(a+b)/2;
+        if(f(c)==0)
+            fprintf("The c is root of f(x)\n");
+        elseif(f(a)*f(c)<0)
+            b=c;
+        else
+            fprintf("The input values are not correct\n");
+        end
+    end
+end
+
+
+9.  BISECTION METHOD
+   ******************
+
+clc;
+close all;
+
+a=input("Enter the first no. = ");
+b=input("Enter the second no. = ");
+c=(a+b)/2;
+fprintf("The c is %f\n",c);
+
+f = @(x)(x^3 + 4*x^2 - 10);
+
+fprintf("The f(a) is %f\n",f(a));
+fprintf("The f(b) is %f\n",f(b));
+fprintf("The f(c) is %f\n",f(c));
+
+
+if(f(a)*f(b)<0)
+    while(abs(a-b)>10^-4)
+        c=(a+b)/2;
+        if(f(c)==0)
+            fprintf("The c is root of f(x)\n");
+        elseif(f(a)*f(c)<0)
+            b=c;
+
+        else
+            a=c;
+        end
+     end
+   else
+        fprintf("The input values are not correct\n");
+end
+
+fprintf("The value of root is %f\n",c);
+
+10.
+clc;
+close all;
+
+a=input("Enter the first no. = ");
+b=input("Enter the second no. = ");
+c=(a+b)/2;
+fprintf("The c is %f\n",c);
+fprintf("********************************\n");
+
+f = @(x)(x^3 + 4*x^2 - 10);
+
+fprintf("The f(a) is %f\n",f(a));
+fprintf("The f(b) is %f\n",f(b));
+fprintf("The f(c) is %f\n",f(c));
+fprintf("********************************\n");
+
+
+if(f(a)*f(b)<0)
+    while(abs(a-b)>10^-4)
+        c=(a+b)/2;
+        if(f(c)==0)
+            fprintf("The c is root of f(x)\n");
+        elseif(f(a)*f(c)<0)
+            b=c;
+
+        else
+            a=c;
+        end
+     end
+   else
+        fprintf("The input values are not correct\n");
+end
+
+fprintf("The value of root is %f\n",c);
+fprintf("**********************************\n");
+
+
+11. FIXED POINT ITERATION METHOD
+   *********************************
+
+clc;
+close all;
+
+a=input("Enter the first no. = ");
+fprintf("********************************\n");
+c=input("Enter the tolerance level = ");
+d=input("Enter the no. of iterations = ");
+fprintf("********************************\n");
+
+g = @(x)((x^3+2)/7);
+
+for i=1:d
+    b=g(a);
+    if(abs(a-b)<c)
+        fprintf("The fixed point is %f\n",b);
+        break;
+    else
+        a=b;
+    end
+end
+
+
+12. NEWTON'S METHOD
+   **********************
+
+clc;
+close all;
+
+a=input("Enter the first no. = ");
+fprintf("*************************************\n");
+c=input("Enter the tolerance level = ");
+d=input("Enter the no. of iterations = ");
+fprintf("*************************************\n");
+
+g = @(x)((x^3));
+dg=@(x)((3*x^2));
+
+for i=1:d
+    b = a - g(a)/dg(a);
+    if(abs(a-b)<c)
+        fprintf("The point is %f\n",b);
+        g(b)
+        break;
+    else
+        a=b;
+    end
+end
+
+
+13.
+clc;
+close all;
+
+a=input("Enter the first no. = ");
+fprintf("*************************************\n");
+c=input("Enter the tolerance level = ");
+d=input("Enter the no. of iterations = ");
+fprintf("*************************************\n");
+
+% g = @(x)((x^3));
+% dg=@(x)((3*x^2));
+
+syms x;
+g =  x^3;
+dg=diff(g);
+
+f= inline(g);
+df= inline(dg);
+
+for i=1:d
+    b = a - f(a)/df(a);
+    if(abs(a-b)<c)
+        fprintf("The point is %f\n",b);
+        f(b)
+        break;
+    else
+        a=b;
+    end
+end
+
+
+14. SECANT METHOD
+   *******************
+
+clc;
+close all;
+
+a=input("Enter the first no. = ");
+a1=input("Enter the second no. = ");
+fprintf("*************************************\n");
+c=input("Enter the tolerance level = ");
+d=input("Enter the no. of iterations = ");
+fprintf("*************************************\n");
+
+g = @(x)(x^3-x-1);
+
+
+for i=1:d
+    b = a1 - (((a1-a)/(g(a1)-g(a)))*g(a1));
+   
+    if(abs(b-a1)<c)
+        fprintf("The point is %f\n",b);
+        g(b)
+
+        break;
+    else
+        a=a1;
+        a1=b;
+
+    end
+end
+
+
+15. GAUSS ELIMINATION METHOD
+   *****************************
+
+clear;
+clc;
+close all
+
+ A=input('Enter the elements of matrix A:\n ');
+ b=input('Enter the elements of the matrix b:\n ');
+ n=length(A);
+
+C = [A b];                                                  
+n= size(C,1);                                               
+x = zeros(n,1);                                             
+for i=1:n-1
+    for j=i+1:n
+        m = C(j,i)/C(i,i);
+        C(j,:) = C(j,:) - m*C(i,:);
+    end
+end
+x(n) = C(n,n+1)/C(n,n);
+for i=n-1:-1:1
+    summ = 0;
+    for j=i+1:n
+        summ = summ + C(i,j)*x(j,:);
+        x(i,:) = (C(i,n+1) - summ)/C(i,i);
+    end
+end
+
+fprintf('The Solution is %d\n', x);
+
+
+
+clear;
+clc;
+close all
+
+ A=input('Enter the elements of matrix A:\n ');
+ fprintf("*************************************\n");
+ b=input('Enter the elements of the matrix b:\n ');
+ fprintf("*************************************\n");
+ n=length(A);
+ fprintf('Length is %d\n',n);
+  fprintf("*************************************\n");
+C = [A b];                                                                                                 
+x = zeros(n,1);                                             
+for i=1:n-1
+    for j=i+1:n
+        m = C(j,i)/C(i,i);
+        C(j,:) = C(j,:) - m*C(i,:);
+    end
+end
+x(n) = C(n,n+1)/C(n,n);
+for i=n-1:-1:1
+    summ = 0;
+    for j=i+1:n
+        summ = summ + C(i,j)*x(j,:);
+        x(i,:) = (C(i,n+1) - summ)/C(i,i);
+    end
+end
+
+fprintf('The Solution is %d\n', x);
+
+
+16. LU FACTORIZATION METHOD
+  ****************************
+
+clear;
+clc;
+close all
+
+ A=input('Enter the elements of matrix A:\n ');
+ fprintf("*************************************\n");
+ b=input('Enter the elements of the matrix b:\n ');
+ fprintf("*************************************\n");
+ n=length(A);
+ fprintf('Length is %d\n',n);
+  fprintf("*************************************\n");
+C = [A b];                                                                                                 
+m=eye(n);
+for i=1:n-1
+    for j=i+1:n
+        m(j,i) = C(j,i)/C(i,i);
+        A(j,:) = A(j,:) - m(j,i)*A(i,:);
+    end
+end
+disp(m)
+ fprintf("*************************************\n");
+U=A;
+L=m;
+y=L\b;
+disp(y);
+ fprintf("*************************************\n");
+x=U\y;
+fprintf('The solution is\n');
+disp(x);
+
+
+16. POWER METHOD
+   ***************
+
+clear;
+clc;
+close all
+
+ A=input('Enter the elements of matrix A:\n ');
+ fprintf("*************************************\n");
+  x=input('Enter the eigen vector:\n ');
+ fprintf("*************************************\n");
+ N=input('Enter the no. of iterations:\n ');
+ fprintf("*************************************\n");
+ tol=input('Enter the level of tolerance:\n ');
+ fprintf("*************************************\n");
+
+ m1=1;
+ v=A*x;
+ m2=max(abs(v));
+ e=abs(m1-m2);
+
+ while e>tol
+     v=A*x;
+     m2=max(abs(v));
+     x=v/m2;
+     e=abs(m1-m2);
+     m1=m2;
+ end
+
+ fprintf('The greatest eigen values is %2.5f \n' , m1);
+ fprintf("*************************************\n");
+ disp('The eigen vector is:');
+ disp(x);
+
+
+17. LA GRANGE INTERPOLATION
+  ****************************
+
+clear;
+clc;
+close all
+
+ A=input('Enter the Polynomial 1:\n ');
+ fprintf("*************************************\n");
+  B=input('Enter the Polynomial 2:\n ');
+ fprintf("*************************************\n");
+ n=length(A);
+ 
+ 
+ sum = 0;
+ a=12.5;
+
+ for i=1:n
+     p=1;
+     l=1;
+     for j=1:n
+         if j~=i
+             p = p * (a - A(j));
+             l = l* (A(i) - A(j));
+             
+         end
+     end
+
+
+     sum = sum + p/l * B(i);
+ end
+
+ disp(sum);
+
+
+18.  NEWTONS DIVIDED DIFFERENCE INTERPOLATION
+   *********************************************
+
+clear;
+clc;
+close all
+
+ A=input('Enter the Polynomial 1:\n ');
+ fprintf("*************************************\n");
+  B=input('Enter the Polynomial 2:\n ');
+ fprintf("*************************************\n");
+ n=length(A);
+
+ D = zeros(n,n);
+ D(:,1) = B;
+ for j=2:n
+     for i = j:n
+
+         D(i,j) = (D(i,j-1) - D(i-1,j-1))/(A(i) - A(i-j+1));
+     end
+ end
+ disp(D);
+ fprintf("***************************************************\n");
+
+ C = D(n,n);
+ for k = n-1: -1 :1
+     C = conv(C, poly(A(k)));
+
+     r= length(C);
+
+     C(r) = C(r) + D(k,k);
+ end
+ disp(C);
+ fprintf("***************************************************\n");
+
+
+ E = polyval(C,4.5);
+ disp(E);
